@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MovieSearch from "./MovieSearch";
 
 const Header = () => {
   return (
@@ -10,6 +11,8 @@ const Header = () => {
         >
           <span className="navbar-brand">Movies app</span>
         </Link>
+
+        <MovieSearch />
 
         <ul className="nav nav-pills">
           <li className="nav-item">

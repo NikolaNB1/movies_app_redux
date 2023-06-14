@@ -1,5 +1,5 @@
 import { API } from "../shared/api";
 
-export const getMovies = () => {
-  return API.get(`/movies`);
+export const getMovies = (params) => {
+  return API.get("/movies", { params });
 };
