@@ -26,7 +26,7 @@ const MovieRow = ({ movie, id }) => {
   };
 
   return (
-    <div key={id} className="col m-5" style={{ width: "340px" }}>
+    <div key={id} className="col m-5" style={{ width: "380px" }}>
       <div className="card shadow-sm">
         <div className="card-body bg-light border rounded border">
           <img
@@ -43,6 +43,8 @@ const MovieRow = ({ movie, id }) => {
           <p className="card-text mb-auto">
             Release date: {movie.release_date}
           </p>
+          <p className="card-text mb-auto">Duration: {movie.duration}</p>
+          <div className="mb-1 text-body-secondary">Genre: {movie.genre}</div>
           <div
             style={{
               display: "flex",

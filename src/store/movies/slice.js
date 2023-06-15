@@ -6,8 +6,11 @@ export const moviesSlice = createSlice({
     value: [],
     search: {
       title: "",
+      duration: "",
     },
     selectedList: [],
+    page: 1,
+    lastPage: 1,
   },
   reducers: {
     setMovies: (state, action) => {
@@ -27,6 +30,15 @@ export const moviesSlice = createSlice({
     resetSelected: (state) => {
       state.selectedList = [];
     },
+    setSearchDuration: (state, action) => {
+      state.search.duration = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
+    setLastPage: (state, action) => {
+      state.lastPage = action.payload;
+    },
   },
 });
 
@@ -36,6 +48,9 @@ export const {
   addToSelected,
   removeFromSelected,
   resetSelected,
+  setSearchDuration,
+  setPage,
+  setLastPage,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;
