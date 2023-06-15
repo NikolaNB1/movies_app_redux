@@ -1,4 +1,30 @@
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedList } from "../store/movies/selectors";
+import { useEffect, useState } from "react";
+import { addToSelected, removeFromSelected } from "../store/movies/slice";
+
 const MovieRow = ({ movie, id }) => {
+  const dispatch = useDispatch();
+
+  const selectedMovies = useSelector(selectSelectedList);
+  const [selected, setSelected] = useState(false);
+
+  useEffect(() => {
+    if (selectedMovies.find((id) => id === movie.id)) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }, [selectedMovies, setSelected, movie]);
+
+  const handleClick = () => {
+    if (selected) {
+      dispatch(removeFromSelected(movie.id));
+    } else {
+      dispatch(addToSelected(movie.id));
+    }
+  };
+
   return (
     <div key={id} className="col m-5" style={{ width: "340px" }}>
       <div className="card shadow-sm">
@@ -22,28 +48,17 @@ const MovieRow = ({ movie, id }) => {
               display: "flex",
               justifyContent: "space-evenly",
             }}
-          >
-            {/* <Link
-            className="btn btn-outline-success"
-            to={`/movies/${movie.id}`}
-          >
-            View
-          </Link> */}
-            {/* <Link
-            className="btn btn-outline-warning"
-            to={`edit/${movie.id}`}
-          >
-            Edit
-          </Link> */}
-            {/* <button
-            className="btn btn-outline-danger"
-            type="delete"
-            onClick={() => handleDelete(movie.id)}
-          >
-            Delete
-          </button> */}
-          </div>
+          ></div>
         </div>
+        {selected ? (
+          <button className="btn btn-secondary" onClick={handleClick}>
+            Deselect
+          </button>
+        ) : (
+          <button className="btn btn-info" onClick={handleClick}>
+            Select
+          </button>
+        )}
       </div>
     </div>
   );
